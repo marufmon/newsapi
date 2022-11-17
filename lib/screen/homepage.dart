@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int pageNo = 1;
+  int pageNo = 3;
   String sortBy = 'popularity';
   @override
   Widget build(BuildContext context) {
