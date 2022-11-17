@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:newsapi/const/const.dart';
 import 'package:newsapi/custom_url/custom_url.dart';
+import 'package:newsapi/news_model.dart';
 import 'package:newsapi/screen/news_details.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../const/const.dart';
-import '../news_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,7 +24,7 @@ class _HomePageState extends State<HomePage> {
             // backgroundColor: Colo,
             appBar: AppBar(
               title: Text(
-                'The Daily Star',
+                'Daily News',
                 style: GoogleFonts.nunito(
                     fontSize: 20,
                     color: Colors.black87,
@@ -49,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                               ConnectionState.waiting) {
                             return Center(
                                 child: Image.network(
-                                    'https://1.bp.blogspot.com/-0mSJp2OVAYU/X-YBaWXhp6I/AAAAAAAALWQ/9Pf-N_CxQMMxDc1j-Bc1HHDr0OoBcIWUgCPcBGAYYCw/s293/daily%2Bstar%2Blogo_jobeduexam.jpg'));
+                                    'https://www.lagrangenews.com/wp-content/uploads/sites/37/2020/04/facebook-lagrangenews.png '));
                           } else if (snapshot.hasError) {
                             return Text('Something Error');
                           } else if (snapshot.data == null) {
@@ -59,6 +57,7 @@ class _HomePageState extends State<HomePage> {
                               physics: BouncingScrollPhysics(),
                               shrinkWrap: true,
                               itemBuilder: (context, index) => Card(
+                                    elevation: 5,
                                     child: GestureDetector(
                                       onTap: () => Navigator.push(
                                           context,
@@ -99,13 +98,15 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       children: [
                         ElevatedButton(
-                            onPressed: () {
-                              if (pageNo > 1) {
-                                pageNo--;
-                                setState(() {});
-                              }
-                            },
-                            child: Text('Pre')),
+                          onPressed: () {
+                            if (pageNo > 1) {
+                              pageNo--;
+                              setState(() {});
+                            }
+                          },
+                          child: Text('Pre',
+                              style: GoogleFonts.roboto(fontSize: 16)),
+                        ),
                         Flexible(
                             child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -121,8 +122,8 @@ class _HomePageState extends State<HomePage> {
                                     decoration: BoxDecoration(
                                         border: Border.all(
                                           color: index == pageNo - 1
-                                              ? Colors.red
-                                              : Colors.blue,
+                                              ? Colors.green
+                                              : Colors.yellow,
                                         ),
                                         borderRadius:
                                             BorderRadius.circular(10)),
@@ -131,8 +132,8 @@ class _HomePageState extends State<HomePage> {
                                       style: GoogleFonts.nunito(
                                         fontSize: index == pageNo - 1 ? 20 : 12,
                                         color: index == pageNo - 1
-                                            ? Colors.red
-                                            : Colors.black,
+                                            ? Colors.black
+                                            : Colors.red,
                                       ),
                                     ),
                                   ))),
@@ -144,7 +145,10 @@ class _HomePageState extends State<HomePage> {
                                 setState(() {});
                               }
                             },
-                            child: Text('NEXT')),
+                            child: Text(
+                              'Next',
+                              style: GoogleFonts.roboto(fontSize: 16),
+                            )),
                       ],
                     )
                   ],
